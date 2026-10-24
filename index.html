@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MI AR-ROHMAN BANGAH</title>
+<meta name="description" content="Website MI AR-ROHMAN BANGAH">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Variabel warna & dasar ===== */
+:root{--em:#065f46;--em-d:#064e3b;--em-dd:#022c22;--gold:#c9a24b;--ink:#1f2a27;--mut:#64748b;--bg:#fbfaf6;--line:#e7e4da;--r:16px;--sh:0 10px 30px rgba(6,78,59,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font:16px/1.7 Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg)}
+h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,serif;line-height:1.25;color:var(--em-d)}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.wrap{width:min(1120px,92%);margin:auto}
+.pre{white-space:pre-line}
+.muted{color:var(--mut);font-size:.9rem}
+[hidden]{display:none!important}
+
+/* ===== Navigasi ===== */
+header{position:fixed;inset:0 0 auto;z-index:50;transition:.3s}
+header.scrolled{background:rgba(255,255,255,.96);box-shadow:0 2px 20px rgba(0,0,0,.06);backdrop-filter:blur(8px)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;color:#fff}
+.brand b{font-size:1rem}
+.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);font:700 .9rem 'Playfair Display',serif}
+header.scrolled .brand b{color:var(--em-d)}
+nav{display:flex;gap:22px;align-items:center;font-size:.92rem}
+nav a{color:#e8f3ee;position:relative;transition:.25s}
+header.scrolled nav a{color:var(--ink)}
+nav a:not(.cta)::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--gold);transition:.3s}
+nav a:hover::after{width:100%}
+nav .cta{background:var(--gold);color:var(--em-dd)!important;padding:6px 16px;border-radius:99px;font-weight:600}
+#burger{display:none;background:none;border:0;font-size:1.6rem;color:#fff;cursor:pointer}
+header.scrolled #burger{color:var(--em-d)}
+
+/* ===== Hero ===== */
+.hero{min-height:100vh;display:flex;align-items:center;color:#fff;background:radial-gradient(circle at 80% 20%,rgba(201,162,75,.18),transparent 45%),linear-gradient(135deg,var(--em-dd),var(--em) 85%)}
+.hero h1{color:#fff;font-size:clamp(2.2rem,6vw,4rem);max-width:15ch;margin:10px 0 18px}
+.eyebrow{color:var(--gold);letter-spacing:.25em;text-transform:uppercase;font-size:.8rem}
+.lead{max-width:540px;color:#d1e7dd;font-size:1.1rem;margin-bottom:32px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ===== Tombol ===== */
+.btn{display:inline-block;background:var(--gold);color:var(--em-dd);border:1.5px solid var(--gold);padding:11px 26px;border-radius:99px;font:600 .95rem Inter,sans-serif;cursor:pointer;transition:.25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,162,75,.35)}
+.btn.ghost{background:transparent;color:var(--em-d);border-color:var(--em)}
+.btn.ghost.light{color:#fff;border-color:rgba(255,255,255,.5)}
+
+/* ===== Seksi ===== */
+section{padding:88px 0}
+section.alt{background:#f3f1e8}
+.head{margin-bottom:44px}
+.head span{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-size:.78rem;font-weight:600}
+.head h2{font-size:clamp(1.7rem,4vw,2.4rem);margin-top:4px}
+.head::after{content:"";display:block;width:52px;height:3px;background:var(--gold);margin-top:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--sh);transition:.3s}
+.card:hover{transform:translateY(-4px)}
+.card h3{font-size:1.2rem;margin-bottom:8px}
+.ticks li{padding-left:26px;position:relative;margin-bottom:8px}
+.ticks li::before{content:"✦";position:absolute;left:0;color:var(--gold)}
+.status{display:inline-block;background:#ecf6f1;color:var(--em-d);padding:8px 18px;border-radius:99px;margin-bottom:24px;font-weight:500}
+
+/* ===== Guru, berita, galeri ===== */
+.teacher{text-align:center}
+.avatar{width:96px;height:96px;object-fit:cover;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--em),var(--em-d));color:var(--gold);font:700 1.4rem 'Playfair Display',serif}
+.teacher p{color:var(--mut);font-size:.9rem}
+.news-layout{display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start}
+.news small,.ann small{color:var(--gold);font-weight:600}
+.news p{color:var(--mut);margin:6px 0 12px;font-size:.95rem}
+.link{background:none;border:0;color:var(--em);font-weight:600;cursor:pointer}
+.ann{padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.ann:last-child{border:0}
+.ann b{display:block;font-weight:500}
+.shot{position:relative;aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;cursor:pointer;background:linear-gradient(135deg,var(--em),var(--em-dd))}
+.shot img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.shot:hover img{transform:scale(1.06)}
+.shot figcaption{position:absolute;inset:auto 0 0;padding:28px 14px 12px;color:#fff;font-size:.9rem;background:linear-gradient(transparent,rgba(2,44,34,.85))}
+.contact p{margin-bottom:12px}
+.contact b{display:block;color:var(--em-d)}
+.mapbox{padding:0;overflow:hidden;min-height:260px;display:grid;place-items:center;color:var(--mut);text-align:center}
+.mapbox iframe{width:100%;height:100%;min-height:280px;border:0}
+
+/* ===== Footer ===== */
+footer{background:var(--em-dd);color:#bcd5ca;padding-top:48px}
+footer b{color:#fff;font-size:1.2rem}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-bottom:28px}
+.links{display:flex;gap:18px;flex-wrap:wrap}
+.links a:hover,.copy a:hover{color:var(--gold)}
+.copy{border-top:1px solid rgba(255,255,255,.1);padding:18px 0;font-size:.85rem}
+
+/* ===== Animasi muncul ===== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+/* ===== Modal & toast ===== */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(2,44,34,.7);display:grid;place-items:center;padding:16px;animation:fade .25s}
+.box{background:#fff;border-radius:var(--r);padding:32px;width:min(560px,100%);max-height:90vh;overflow:auto;position:relative}
+.box img{width:100%;border-radius:12px}
+.x{position:absolute;top:10px;right:14px;border:0;background:none;font-size:1.8rem;cursor:pointer}
+@keyframes fade{from{opacity:0}}
+#toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,80px);background:var(--em-d);color:#fff;padding:10px 22px;border-radius:99px;z-index:200;transition:.35s}
+#toast.show{transform:translate(-50%,0)}
+
+/* ===== Form & dashboard admin ===== */
+input,textarea,select{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;margin:4px 0 14px;background:#fff}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--gold);border-color:transparent}
+label{font-size:.88rem;font-weight:500;display:block}
+.admin{position:fixed;inset:0;z-index:90;display:flex;background:#f3f1e8}
+.admin aside{width:240px;background:var(--em-dd);padding:24px 16px;display:flex;flex-direction:column;gap:8px;color:#fff;overflow:auto}
+.admin aside .serif{color:var(--gold);font-size:1.2rem;margin-bottom:12px}
+#tabs{display:flex;flex-direction:column;gap:4px;margin-bottom:auto}
+#tabs button{background:none;border:0;color:#cfe3da;text-align:left;padding:10px 14px;border-radius:10px;font:inherit;cursor:pointer}
+#tabs button.on,#tabs button:hover{background:rgba(255,255,255,.1);color:#fff}
+#adminMain{flex:1;padding:32px;overflow:auto}
+#adminMain h2{margin-bottom:18px}
+.panel{background:#fff;border-radius:var(--r);padding:24px;margin-bottom:20px;box-shadow:var(--sh);max-width:820px}
+.item{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.item button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 12px;margin-left:6px;cursor:pointer}
+.item button[data-del]{color:#b42318}
+.hint{font-size:.8rem;color:var(--mut);margin-top:-10px;margin-bottom:14px}
+
+/* ===== Responsif ===== */
+@media(max-width:900px){
+  .grid3,.grid4{grid-template-columns:repeat(2,1fr)}
+  .news-layout{grid-template-columns:1fr}
+}
+@media(max-width:820px){
+  #burger{display:block}
+  nav{position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:0;background:#fff;padding:8px 5%;max-height:0;overflow:hidden;transition:.35s;box-shadow:0 12px 24px rgba(0,0,0,.08)}
+  nav.open{max-height:480px}
+  nav a,header.scrolled nav a{color:var(--ink);padding:12px 0;width:100%}
+  nav .cta{width:auto;margin:8px 0}
+  header:has(nav.open){background:#fff}
+  header:has(nav.open) .brand b,header:has(nav.open) #burger{color:var(--em-d)}
+}
+@media(max-width:600px){
+  section{padding:64px 0}
+  .grid2,.grid3,.grid4{grid-template-columns:1fr}
+  .admin{flex-direction:column}
+  .admin aside{width:100%;flex-direction:row;flex-wrap:wrap;align-items:center;padding:12px}
+  .admin aside .serif{width:100%;margin:0}
+  #tabs{flex-direction:row;flex-wrap:wrap;margin:0}
+  #adminMain{padding:16px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* ===== Foto guru & staf ===== */
+.sub{margin:36px 0 16px;font-size:1.15rem;color:var(--gold)}
+.sub:first-child{margin-top:0}
+.one{grid-template-columns:minmax(0,300px)}
+.one .avatar{width:140px;height:140px}
+.thumb{width:40px;height:40px;border-radius:8px;object-fit:cover}
+.preview{width:120px;height:120px;border-radius:12px;object-fit:cover;display:block;margin-bottom:10px}
+.who{display:flex;align-items:center;gap:10px}
+
+</style>
+</head>
+<body>
+
+<header id="nav">
+  <div class="wrap bar">
+    <a href="#beranda" class="brand"><span class="logo">MI</span><b data-info="nama"></b></a>
+    <button id="burger" aria-label="Buka menu">☰</button>
+    <nav id="menu">
+      <a href="#profil">Profil</a><a href="#visi">Visi &amp; Misi</a><a href="#program">Program</a>
+      <a href="#guru">Guru</a><a href="#berita">Berita</a><a href="#galeri">Galeri</a>
+      <a href="#kontak">Kontak</a><a href="#ppdb" class="cta">PPDB</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="beranda" class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Madrasah Ibtidaiyah</p>
+      <h1 data-info="nama"></h1>
+      <p class="lead" data-info="tagline"></p>
+      <div class="row">
+        <a href="#ppdb" class="btn">Informasi PPDB</a>
+        <a href="#profil" class="btn ghost light">Kenali Kami</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="profil"><div class="wrap">
+    <div class="head reveal"><span>Profil</span><h2>Tentang Sekolah</h2></div>
+    <p class="pre reveal" data-info="sejarah"></p>
+  </div></section>
+
+  <section id="visi" class="alt"><div class="wrap grid2">
+    <div class="card reveal"><h3>Visi</h3><p class="pre" data-info="visi"></p></div>
+    <div class="card reveal"><h3>Misi</h3><ul id="misiList" class="ticks"></ul></div>
+  </div></section>
+
+  <section id="program"><div class="wrap">
+    <div class="head reveal"><span>Pendidikan</span><h2>Program Pendidikan</h2></div>
+    <div id="programGrid" class="grid3"></div>
+  </div></section>
+
+  <section id="guru" class="alt"><div class="wrap">
+    <div class="head reveal"><span>Pendidik</span><h2>Guru &amp; Tenaga Kependidikan</h2></div>
+    <div id="teacherGrid"></div>
+  </div></section>
+
+  <section id="berita"><div class="wrap">
+    <div class="head reveal"><span>Informasi</span><h2>Berita &amp; Pengumuman</h2></div>
+    <div class="news-layout">
+      <div id="newsGrid" class="grid2"></div>
+      <aside class="card"><h3>Pengumuman</h3><div id="annList"></div></aside>
+    </div>
+  </div></section>
+
+  <section id="galeri" class="alt"><div class="wrap">
+    <div class="head reveal"><span>Dokumentasi</span><h2>Galeri Kegiatan</h2></div>
+    <div id="galleryGrid" class="grid3"></div>
+  </div></section>
+
+  <section id="ppdb"><div class="wrap">
+    <div class="head reveal"><span>Pendaftaran</span><h2>Penerimaan Peserta Didik Baru</h2></div>
+    <p class="status reveal" data-info="ppdbStatus"></p>
+    <div class="grid2">
+      <div class="card reveal"><h3>Persyaratan</h3><ul id="syaratList" class="ticks"></ul></div>
+      <div class="card reveal"><h3>Jadwal</h3><ul id="jadwalList" class="ticks"></ul></div>
+    </div>
+  </div></section>
+
+  <section id="kontak" class="alt"><div class="wrap">
+    <div class="head reveal"><span>Hubungi Kami</span><h2>Kontak &amp; Lokasi</h2></div>
+    <div class="grid2">
+      <div class="card reveal contact">
+        <p><b>Alamat</b><span data-info="alamat"></span></p>
+        <p><b>Telepon</b><span data-info="telp"></span></p>
+        <p><b>Email</b><span data-info="email"></span></p>
+        <p><b>Jam Layanan</b><span data-info="jam"></span></p>
+        <a id="mapLink" class="btn" target="_blank" rel="noopener">Buka di Google Maps</a>
+      </div>
+      <div class="card reveal mapbox" id="mapBox"></div>
+    </div>
+  </div></section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><b class="serif" data-info="nama"></b><p data-info="alamat"></p></div>
+    <div class="links"><a href="#profil">Profil</a><a href="#berita">Berita</a><a href="#galeri">Galeri</a><a href="#ppdb">PPDB</a><a href="#kontak">Kontak</a></div>
+  </div>
+  <div class="wrap copy">© <span id="year"></span> <span data-info="nama"></span> · <a href="#admin" id="adminLink">Login Admin</a></div>
+</footer>
+
+<!-- Modal umum (login, baca berita, lightbox) -->
+<div id="modal" class="modal" hidden><div class="box"><button class="x" data-close aria-label="Tutup">×</button><div id="modalBody"></div></div></div>
+
+<!-- Dashboard admin -->
+<div id="admin" class="admin" hidden>
+  <aside>
+    <b class="serif">Dashboard Admin</b>
+    <div id="tabs"></div>
+    <button id="viewSite" class="btn ghost light">Lihat Situs</button>
+    <button id="logout" class="btn ghost light">Keluar</button>
+  </aside>
+  <section id="adminMain"></section>
+</div>
+
+<div id="toast"></div>
+<script>
+'use strict';
+
+/* =====================================================
+   KONFIGURASI
+   Login ini HANYA DEMO (tersimpan di sisi browser, tidak aman).
+   Untuk publikasi, gunakan autentikasi backend.
+===================================================== */
+const KEY = 'mi_arrohman_data_v1';
+const SESSION = 'mi_arrohman_admin';
+const ADMIN = { user: 'admin', pass: 'admin123' };
+
+/* =====================================================
+   DATA CONTOH (semua bisa diganti lewat Dashboard Admin)
+   Format baris: "Judul | Keterangan"
+===================================================== */
+const DEFAULT = {
+  info: {
+    nama: 'MI AR-ROHMAN BANGAH',
+    tagline: 'Mendidik dengan ilmu, akhlak, dan keteladanan.',
+    sejarah: '[Contoh] Tuliskan profil dan sejarah singkat madrasah di sini melalui Dashboard Admin > Info Sekolah.',
+    visi: '[Contoh] Terwujudnya peserta didik yang beriman, berakhlak mulia, cerdas, dan mandiri.',
+    misi: '[Contoh] Menanamkan nilai keislaman dalam keseharian\n[Contoh] Melaksanakan pembelajaran yang aktif dan menyenangkan\n[Contoh] Menjalin kerja sama dengan orang tua dan masyarakat',
+    programs: 'Pendidikan Keagamaan | [Contoh] Pembiasaan ibadah dan pembelajaran materi keagamaan.\nPembelajaran Umum | [Contoh] Pembelajaran sesuai kurikulum yang berlaku.\nPembinaan Karakter | [Contoh] Pembiasaan akhlak dan kedisiplinan.',
+    alamat: '[Isi alamat lengkap madrasah]',
+    telp: '[Isi nomor telepon]',
+    email: '[Isi alamat email]',
+    jam: '[Isi jam layanan]',
+    ppdbStatus: '[Contoh] Informasi PPDB akan diumumkan',
+    ppdbSyarat: '[Contoh] Fotokopi akta kelahiran\n[Contoh] Fotokopi kartu keluarga\n[Contoh] Pas foto',
+    ppdbJadwal: '[Contoh] Pendaftaran: isi tanggal\n[Contoh] Seleksi/verifikasi: isi tanggal\n[Contoh] Pengumuman: isi tanggal'
+  },
+  news: [
+    { id: 1, title: 'Contoh Berita Kegiatan Madrasah', date: '2026-10-01', body: 'Ini adalah contoh isi berita. Ganti atau hapus melalui Dashboard Admin.' },
+    { id: 2, title: 'Contoh Berita Prestasi Siswa', date: '2026-09-15', body: 'Ini adalah contoh isi berita kedua.' }
+  ],
+  ann: [
+    { id: 1, title: 'Contoh Pengumuman Libur', date: '2026-10-10', body: 'Ini contoh isi pengumuman.' },
+    { id: 2, title: 'Contoh Pengumuman Rapat Wali Murid', date: '2026-10-05', body: 'Ini contoh isi pengumuman.' }
+  ],
+  staff: [
+    { id: 1, name: 'Nama Kepala Madrasah', role: 'Kepala Madrasah', type: 'kepala', photo: '' },
+    { id: 2, name: 'Nama Guru 1', role: 'Guru Kelas', type: 'guru', photo: '' },
+    { id: 3, name: 'Nama Guru 2', role: 'Guru Mata Pelajaran', type: 'guru', photo: '' },
+    { id: 4, name: 'Nama Staf', role: 'Tenaga Kependidikan', type: 'staf', photo: '' }
+  ],
+  gallery: [
+    { id: 1, caption: 'Kegiatan Belajar (contoh)', url: '' },
+    { id: 2, caption: 'Kegiatan Keagamaan (contoh)', url: '' },
+    { id: 3, caption: 'Kegiatan Olahraga (contoh)', url: '' }
+  ]
+};
+
+/* =====================================================
+   HELPER
+===================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const lines = s => String(s || '').split('\n').map(x => x.trim()).filter(Boolean);
+const pair = l => l.split('|').map(x => x.trim());
+const fmt = d => { const t = new Date(d); return isNaN(t) ? '' : t.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }); };
+const today = () => new Date().toISOString().slice(0, 10);
+const byDate = (a, b) => String(b.date).localeCompare(String(a.date));
+
+let toastTimer;
+function toast(msg) {
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+/* =====================================================
+   PENYIMPANAN (localStorage)
+===================================================== */
+function load() {
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY));
+    if (s && s.info) return { ...structuredClone(DEFAULT), ...s, info: { ...DEFAULT.info, ...s.info } };
+  } catch (e) { /* abaikan, pakai data bawaan */ }
+  return structuredClone(DEFAULT);
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(db)); return true; }
+  catch (e) { toast('Browser tidak bisa menyimpan permanen (atau penuh). Perubahan hilang saat halaman ditutup.'); return true; }
+}
+let db = load();
+
+/* =====================================================
+   TAMPILAN SITUS PUBLIK
+===================================================== */
+function renderSite() {
+  const i = db.info;
+  document.title = i.nama;
+  $$('[data-info]').forEach(e => e.textContent = i[e.dataset.info] || '');
+  $('#year').textContent = new Date().getFullYear();
+
+  $('#misiList').innerHTML = lines(i.misi).map(x => `<li>${esc(x)}</li>`).join('');
+  $('#syaratList').innerHTML = lines(i.ppdbSyarat).map(x => `<li>${esc(x)}</li>`).join('');
+  $('#jadwalList').innerHTML = lines(i.ppdbJadwal).map(x => `<li>${esc(x)}</li>`).join('');
+
+  $('#programGrid').innerHTML = lines(i.programs).map(l => {
+    const [a, b = ''] = pair(l);
+    return `<article class="card reveal"><h3>${esc(a)}</h3><p>${esc(b)}</p></article>`;
+  }).join('');
+
+  const person = p => `<article class="card teacher reveal">${p.photo
+    ? `<img class="avatar" src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy">`
+    : `<div class="avatar">${esc((p.name || '?').charAt(0).toUpperCase())}</div>`}
+    <h3>${esc(p.name)}</h3><p>${esc(p.role)}</p></article>`;
+  $('#teacherGrid').innerHTML = [['kepala', 'Kepala Madrasah'], ['guru', 'Guru'], ['staf', 'Tenaga Kependidikan']].map(([t, label]) => {
+    const list = db.staff.filter(p => p.type === t);
+    return list.length ? `<h3 class="sub reveal">${label}</h3><div class="grid4${t === 'kepala' ? ' one' : ''}">${list.map(person).join('')}</div>` : '';
+  }).join('') || '<p class="muted">Belum ada data.</p>';
+
+  $('#newsGrid').innerHTML = [...db.news].sort(byDate).map(n =>
+    `<article class="card news reveal"><small>${fmt(n.date)}</small><h3>${esc(n.title)}</h3>
+     <p>${esc(n.body.slice(0, 110))}${n.body.length > 110 ? '…' : ''}</p>
+     <button class="link" data-read="news:${n.id}">Baca selengkapnya →</button></article>`).join('')
+    || '<p class="muted">Belum ada berita.</p>';
+
+  $('#annList').innerHTML = [...db.ann].sort(byDate).map(a =>
+    `<div class="ann" data-read="ann:${a.id}"><small>${fmt(a.date)}</small><b>${esc(a.title)}</b></div>`).join('')
+    || '<p class="muted">Belum ada pengumuman.</p>';
+
+  $('#galleryGrid').innerHTML = db.gallery.map(g =>
+    `<figure class="shot reveal" data-img="${g.id}">${g.url ? `<img src="${esc(g.url)}" alt="${esc(g.caption)}" loading="lazy">` : ''}<figcaption>${esc(g.caption)}</figcaption></figure>`).join('')
+    || '<p class="muted">Belum ada foto.</p>';
+
+  const q = encodeURIComponent(i.nama + ' ' + i.alamat);
+  $('#mapLink').href = 'https://www.google.com/maps/search/?api=1&query=' + q;
+  $('#mapBox').innerHTML = `<iframe loading="lazy" title="Peta lokasi" src="https://maps.google.com/maps?q=${q}&output=embed"></iframe>`;
+
+  observeReveal();
+}
+
+/* Animasi muncul saat scroll */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+function observeReveal() { $$('.reveal:not(.in)').forEach(el => io.observe(el)); }
+
+/* =====================================================
+   NAVIGASI
+===================================================== */
+const nav = $('#nav'), menu = $('#menu');
+const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
+addEventListener('scroll', onScroll); onScroll();
+$('#burger').onclick = () => menu.classList.toggle('open');
+menu.addEventListener('click', e => { if (e.target.tagName === 'A') menu.classList.remove('open'); });
+
+/* =====================================================
+   MODAL
+===================================================== */
+function openModal(html) { $('#modalBody').innerHTML = html; $('#modal').hidden = false; }
+function closeModal() { $('#modal').hidden = true; }
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal' || e.target.hasAttribute('data-close')) closeModal(); });
+addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+document.addEventListener('click', e => {
+  const r = e.target.closest('[data-read]');
+  if (r) {
+    const [type, id] = r.dataset.read.split(':');
+    const x = db[type].find(v => v.id == id);
+    if (x) openModal(`<small class="muted">${fmt(x.date)}</small><h3>${esc(x.title)}</h3><p class="pre">${esc(x.body)}</p>`);
+  }
+  const g = e.target.closest('[data-img]');
+  if (g) {
+    const x = db.gallery.find(v => v.id == g.dataset.img);
+    if (x) openModal(`${x.url ? `<img src="${esc(x.url)}" alt="${esc(x.caption)}">` : ''}<p style="margin-top:12px">${esc(x.caption)}</p>`);
+  }
+});
+
+/* =====================================================
+   LOGIN ADMIN (DEMO)
+===================================================== */
+let loggedIn = false; // status login disimpan di memori (aman untuk browser HP)
+const isAdmin = () => loggedIn;
+
+function openLogin() {
+  openModal(`<h3>Login Admin</h3><p class="muted" style="margin:6px 0 16px">Demo: admin / admin123</p>
+    <form id="loginForm"><label>Username<input name="u" required autocomplete="username"></label>
+    <label>Kata sandi<input name="p" type="password" required autocomplete="current-password"></label>
+    <button class="btn">Masuk</button></form>`);
+  $('#loginForm').onsubmit = e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    if (f.get('u') === ADMIN.user && f.get('p') === ADMIN.pass) {
+      loggedIn = true; closeModal(); openAdmin();
+    } else toast('Username atau kata sandi salah');
+  };
+}
+
+$('#adminLink').addEventListener('click', e => { e.preventDefault(); isAdmin() ? openAdmin() : openLogin(); });
+if (location.hash === '#admin') isAdmin() ? openAdmin() : openLogin();
+
+/* =====================================================
+   DASHBOARD ADMIN
+===================================================== */
+const TABS = { info: 'Info Sekolah', staff: 'Guru & Staf', news: 'Berita', ann: 'Pengumuman', gallery: 'Galeri' };
+
+/* Field Info Sekolah: [kunci, label, tipe, petunjuk] */
+const INFO_FIELDS = [
+  ['nama', 'Nama sekolah', 'text'], ['tagline', 'Slogan', 'text'],
+  ['sejarah', 'Profil / sejarah', 'textarea'], ['visi', 'Visi', 'textarea'],
+  ['misi', 'Misi', 'textarea', 'Satu baris = satu poin'],
+  ['programs', 'Program pendidikan', 'textarea', 'Format per baris: Nama program | Deskripsi'],
+  ['ppdbStatus', 'Status PPDB', 'text'], ['ppdbSyarat', 'Persyaratan PPDB', 'textarea', 'Satu baris = satu poin'],
+  ['ppdbJadwal', 'Jadwal PPDB', 'textarea', 'Satu baris = satu poin'],
+  ['alamat', 'Alamat', 'textarea'], ['telp', 'Telepon', 'text'], ['email', 'Email', 'text'], ['jam', 'Jam layanan', 'text']
+];
+
+/* Koleksi yang bisa ditambah/diedit/dihapus */
+const COL = {
+  staff: [['name', 'Nama', 'text'], ['role', 'Jabatan', 'text'], ['type', 'Kategori', 'select'], ['photo', 'URL foto (opsional)', 'text']],
+  news: [['title', 'Judul', 'text'], ['date', 'Tanggal', 'date'], ['body', 'Isi berita', 'textarea']],
+  ann: [['title', 'Judul', 'text'], ['date', 'Tanggal', 'date'], ['body', 'Isi pengumuman', 'textarea']],
+  gallery: [['caption', 'Keterangan foto', 'text'], ['url', 'URL gambar (opsional)', 'text']]
+};
+
+/* Kolom foto tiap koleksi & pilihan dropdown */
+const IMG = { gallery: 'url', staff: 'photo' };
+const SELECT = { type: [['kepala', 'Kepala Madrasah'], ['guru', 'Guru'], ['staf', 'Staf / Tenaga Kependidikan']] };
+
+let tab = 'info';
+const editing = {};
+
+const field = (k, l, t, v, hint) => t === 'select'
+  ? `<label>${l}<select name="${k}">${SELECT[k].map(([o, n]) => `<option value="${o}"${o === v ? ' selected' : ''}>${n}</option>`).join('')}</select></label>`
+  : t === 'textarea'
+    ? `<label>${l}<textarea name="${k}" rows="4">${esc(v)}</textarea></label>${hint ? `<p class="hint">${hint}</p>` : ''}`
+    : `<label>${l}<input name="${k}" type="${t}" value="${esc(v)}"></label>`;
+
+function openAdmin() {
+  $('#admin').hidden = false; document.body.style.overflow = 'hidden';
+  showTab(tab);
+}
+function closeAdmin() { $('#admin').hidden = true; document.body.style.overflow = ''; }
+
+function showTab(t) {
+  tab = t;
+  $('#tabs').innerHTML = Object.entries(TABS).map(([k, v]) => `<button data-tab="${k}" class="${k === t ? 'on' : ''}">${v}</button>`).join('');
+  t === 'info' ? renderInfoForm() : renderCollection(t);
+}
+
+function renderInfoForm() {
+  $('#adminMain').innerHTML = `<h2>Info Sekolah</h2>
+    <form id="infoForm" class="panel">${INFO_FIELDS.map(([k, l, t, h]) => field(k, l, t, db.info[k], h)).join('')}
+    <div class="row"><button class="btn">Simpan Perubahan</button>
+    <button type="button" class="btn ghost" id="resetData">Reset ke Data Contoh</button></div></form>`;
+}
+
+function renderCollection(t) {
+  const ed = editing[t] ? db[t].find(x => x.id === editing[t]) : null, ik = IMG[t];
+  // Data foto (base64) tidak ditampilkan di kolom teks agar tetap rapi
+  const val = (k, ty) => { const v = ed ? ed[k] : (ty === 'date' ? today() : ''); return (k === ik && String(v).startsWith('data:')) ? '' : v; };
+  $('#adminMain').innerHTML = `<h2>${TABS[t]}</h2>
+    <form id="colForm" class="panel">
+      ${COL[t].map(([k, l, ty]) => field(k, l, ty, val(k, ty))).join('')}
+      ${ik ? `${ed && ed[ik] ? `<img class="preview" src="${esc(ed[ik])}" alt="Foto saat ini">` : ''}
+        <label>Unggah foto dari HP / komputer<input type="file" id="file" accept="image/*"></label>` : ''}
+      <div class="row"><button class="btn">${ed ? 'Simpan Perubahan' : 'Tambah'}</button>
+      ${ed ? '<button type="button" class="btn ghost" id="cancelEdit">Batal</button>' : ''}</div>
+    </form>
+    <div class="panel">${db[t].map(x => `<div class="item"><span class="who">${x[ik] ? `<img class="thumb" src="${esc(x[ik])}" alt="">` : ''}
+      <span>${esc(x.title || x.caption || x.name)}${x.role ? `<small class="muted"> · ${esc(x.role)}</small>` : ''}</span></span>
+      <span><button data-edit="${x.id}">Edit</button><button data-del="${x.id}">Hapus</button></span></div>`).join('') || '<p class="muted">Belum ada data.</p>'}</div>`;
+}
+
+/* Perkecil foto sebelum disimpan agar localStorage tidak penuh */
+const compress = (file, max = 900) => new Promise(res => {
+  const fr = new FileReader();
+  fr.onload = () => {
+    const im = new Image();
+    im.onload = () => {
+      const s = Math.min(1, max / Math.max(im.width, im.height)), c = document.createElement('canvas');
+      c.width = im.width * s; c.height = im.height * s;
+      c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+      res(c.toDataURL('image/jpeg', .75));
+    };
+    im.src = fr.result;
+  };
+  fr.readAsDataURL(file);
+});
+
+/* Event dashboard (delegasi) */
+$('#admin').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.tab) showTab(b.dataset.tab);
+  else if (b.id === 'viewSite') closeAdmin();
+  else if (b.id === 'logout') { loggedIn = false; closeAdmin(); toast('Anda telah keluar'); }
+  else if (b.id === 'cancelEdit') { editing[tab] = null; renderCollection(tab); }
+  else if (b.id === 'resetData') {
+    if (confirm('Kembalikan semua data ke contoh awal?')) { localStorage.removeItem(KEY); db = load(); renderSite(); renderInfoForm(); toast('Data direset'); }
+  }
+  else if (b.dataset.edit) { editing[tab] = +b.dataset.edit; renderCollection(tab); }
+  else if (b.dataset.del && confirm('Hapus data ini?')) {
+    db[tab] = db[tab].filter(x => x.id != b.dataset.del);
+    if (save()) { renderSite(); renderCollection(tab); toast('Data dihapus'); }
+  }
+});
+
+$('#admin').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = Object.fromEntries(new FormData(e.target));
+  if (e.target.id === 'infoForm') {
+    db.info = { ...db.info, ...f };
+    if (save()) { renderSite(); toast('Info sekolah disimpan'); }
+    return;
+  }
+  const file = $('#file')?.files[0], ik = IMG[tab];
+  if (ik) { if (file) f[ik] = await compress(file, tab === 'staff' ? 500 : 900); else if (!f[ik]) delete f[ik]; }
+  if (editing[tab]) {
+    db[tab] = db[tab].map(x => x.id === editing[tab] ? { ...x, ...f } : x);
+    editing[tab] = null;
+  } else db[tab].push({ id: Date.now(), ...f });
+  if (save()) { renderSite(); renderCollection(tab); toast('Berhasil disimpan'); }
+});
+
+/* =====================================================
+   MULAI
+===================================================== */
+renderSite();
+
+</script>
+</body>
+</html>
